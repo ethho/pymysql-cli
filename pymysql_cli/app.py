@@ -1,27 +1,22 @@
 import typer
-
+from typing_extensions import Annotated
 
 app = typer.Typer()
 
-
-@app.callback()
-def callback():
-    """
-    Awesome Portal Gun
-    """
+#
 
 
 @app.command()
-def shoot():
+def main(
+    host: Annotated[str, typer.Argument(envvar="PYMYSQL_HOST")],
+    user_name: Annotated[str, typer.Argument(envvar="PYMYSQL_USER")],
+    password: Annotated[str, typer.Argument(envvar="PYMYSQL_PASS")],
+    sql: str,
+):
     """
-    Shoot the portal gun
+    Run a SQL query.
     """
-    typer.echo("Shooting portal gun")
-
-
-@app.command()
-def load():
-    """
-    Load the portal gun
-    """
-    typer.echo("Loading portal gun")
+    print(f"{host=}")
+    print(f"{user_name=}")
+    print(f"{password=}")
+    print(f"{sql=}")
